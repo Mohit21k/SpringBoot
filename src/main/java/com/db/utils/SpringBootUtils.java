@@ -10,6 +10,10 @@ import com.db.constants.SpringBootConstants;
 import com.db.demo.model.GoogleResponseToJson;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+/**
+ * The Class SpringBootUtils.
+ */
 public class SpringBootUtils implements SpringBootConstants {
 
 	/**
@@ -48,7 +52,7 @@ public class SpringBootUtils implements SpringBootConstants {
 	 *            the to lon
 	 * @return the double
 	 */
-	public static double distance(double fromLat, double fromLon, double toLat, double toLon) {
+	public static double calDistance(double fromLat, double fromLon, double toLat, double toLon) {
 		double radius = 6371000; // approximate Earth radius in meters
 		double latDiff = (toLat - fromLat);
 		double lonDiff = toLon - fromLon;
