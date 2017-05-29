@@ -15,7 +15,7 @@ import com.db.demo.model.Location;
 import com.db.demo.model.ShopInfo;
 import com.db.demo.services.ShopInfoService;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ShopServiceController.
  */
@@ -41,14 +41,15 @@ public class ShopServiceController {
 	@RequestMapping(value = "/addshopinfo", method = RequestMethod.POST, consumes = { "application/json" }, produces = {
 			"application/json" })
 	@ResponseStatus(HttpStatus.OK)
-	public void addShopDetails(@RequestBody ShopInfo shopInfo) throws IOException {
+	public ShopInfo addShopDetails(@RequestBody ShopInfo shopInfo) throws IOException {
 		logger.info("[addShopDetails({})] started ...", shopInfo);
-		shopInfoService.addShopDetails(shopInfo);
+		shopInfo = shopInfoService.addShopDetails(shopInfo);
 		logger.info("[addShopDetails({})] done.", (shopInfoService.getShopDetails()).toString());
+		return shopInfo;
 	}
 
 	/**
-	 * Gets the hop details.
+	 * Gets the shop details.
 	 *
 	 * @param location
 	 *            the location
