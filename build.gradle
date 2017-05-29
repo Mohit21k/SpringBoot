@@ -1,6 +1,6 @@
 defaultTasks 'build' 
 apply plugin: 'java'
-apply plugin: 'jacoco'
+/*apply plugin: 'jacoco'*/
 apply plugin: 'eclipse-wtp'
 
 
@@ -14,9 +14,10 @@ sourceSets {
     main {     
         java {
             srcDirs 'src/main/java'
+			srcDirs 'src/test/java'
         }        
         resources {
-            srcDirs 'src/test/resources'
+            srcDirs 'src/main/resources'
         }
     }          
 }
@@ -34,7 +35,7 @@ dependencies {
 	compile 'org.testng:testng:6.11'
 }
 
-jacoco {
+/*jacoco {
     toolVersion = "0.7.6.201602180812"
     reportsDir = file("$buildDir//Reports//customJacocoReportDir")
 }    
@@ -45,4 +46,4 @@ jacocoTestReport {
         csv.enabled false
         html.destination "${buildDir}//Reports//jacocoHtml"
     }
-}
+}*/
