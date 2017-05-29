@@ -6,6 +6,8 @@ Installation Steps:
 
 2)Unzip it and import it as gradle project in your eclipse workspace.
 
+3)Add TestNG and Gradle plugin to your eclipse IDE.
+
 3)Change distribution url in gradle/wrapper/gradle-wrapper.properties file as per your local gradle installation.
 
 4)Right click on project on do gradle refresh and it will build download and build whole project.
