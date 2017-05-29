@@ -88,7 +88,7 @@ public class InMemoryShopInfoServiceImpl implements ShopInfoService {
 	 */
 	@Override
 	public ShopInfo getShopDetails(String fromlat, String fromlng) throws IOException {
-		Double prevDistance = 6371000.0;
+		Double prevDistance = 6371.0; //distance in km;
 		int index = 0;
 		for (ShopInfo shopInfo : shopInfoById.values()) {
 			Double distance = SpringBootUtils.calDistance(Double.parseDouble(fromlat), Double.parseDouble(fromlng),
