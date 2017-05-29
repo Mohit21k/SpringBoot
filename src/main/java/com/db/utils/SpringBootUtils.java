@@ -53,11 +53,12 @@ public class SpringBootUtils implements SpringBootConstants {
 	 * @return the double
 	 */
 	public static double calDistance(double fromLat, double fromLon, double toLat, double toLon) {
-		double radius = 6371000; // approximate Earth radius in meters
-		double latDiff = (toLat - fromLat);
-		double lonDiff = toLon - fromLon;
-		double angle = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(latDiff / 2), 2)
-				+ Math.cos(fromLat) * Math.cos(toLat) * Math.pow(Math.sin(lonDiff / 2), 2)));
-		return radius * angle;
+		double radius = 6371; // approximate Earth radius Km
+		double latDiff = Math.toRadians(toLat - fromLat);
+		double lonDiff = Math.toRadians(toLon - fromLon);
+		double angle = Math.pow(Math.sin(latDiff / 2), 2)
+				+ Math.cos(Math.toRadians(fromLat)) * Math.cos(Math.toRadians(toLat)) * Math.pow(Math.sin(lonDiff / 2), 2);
+		double c = 2 * Math.atan2(Math.sqrt(angle), Math.sqrt(1 - angle));
+		return radius*c;
 	}
 }
