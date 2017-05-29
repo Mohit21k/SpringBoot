@@ -16,7 +16,7 @@ import com.db.demo.services.ShopInfoService;
 import com.db.utils.SpringBootUtils;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class InMemoryShopInfoServiceImpl.
  *
@@ -65,18 +65,18 @@ public class InMemoryShopInfoServiceImpl implements ShopInfoService {
 	 * ShopInfo)
 	 */
 	@Override
-	public void addShopDetails(ShopInfo shopInfo) throws IOException {
+	public ShopInfo addShopDetails(ShopInfo shopInfo) throws IOException {
 		if (shopInfo == null)
-			return;
-		Integer newId = seq.increment();
-		shopInfo.setShopId(Integer.toString(newId));
+			return shopInfo;				
 		GoogleResponseToJson responseToJson = SpringBootUtils.convertToLatLong(shopInfo.getShopAddress());
 		String latitude = (responseToJson.getResults())[0].getGeometry().getLocation().getLat();
 		String longitude = (responseToJson.getResults())[0].getGeometry().getLocation().getLng();
 		shopInfo.setShopLatitude(Double.parseDouble(latitude));
 		shopInfo.setShopLongitude(Double.parseDouble(longitude));
-		shopInfoById.put(newId, shopInfo);
-
+		Integer newId = seq.increment();
+		shopInfo.setShopId(Integer.toString(newId));
+		shopInfoById.put(newId, shopInfo);		
+		return shopInfo;
 	}
 
 	/*
@@ -91,7 +91,7 @@ public class InMemoryShopInfoServiceImpl implements ShopInfoService {
 		Double prevDistance = 6371000.0;
 		int index = 0;
 		for (ShopInfo shopInfo : shopInfoById.values()) {
-			Double distance = SpringBootUtils.distance(Double.parseDouble(fromlat), Double.parseDouble(fromlng),
+			Double distance = SpringBootUtils.calDistance(Double.parseDouble(fromlat), Double.parseDouble(fromlng),
 					shopInfo.getShopLatitude(), shopInfo.getShopLongitude());
 			if (distance < prevDistance) {
 				prevDistance = distance;
