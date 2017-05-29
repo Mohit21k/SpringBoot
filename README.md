@@ -20,7 +20,6 @@ Request:
 }
 
 Response:
-SpringBootDemoApplication.java class and do run as java application.
 
 {
    "shopId": "1",
