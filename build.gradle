@@ -1,0 +1,48 @@
+defaultTasks 'build' 
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'eclipse-wtp'
+
+
+repositories {
+
+    maven{ url 'http://central.maven.org/maven2/' }
+}
+
+
+sourceSets {
+    main {     
+        java {
+            srcDirs 'src/main/java'
+        }        
+        resources {
+            srcDirs 'src/test/resources'
+        }
+    }          
+}
+
+test {
+        useTestNG()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-parent:1.5.3.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-web:1.5.3.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-jersey:1.5.3.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-security:1.5.3.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-test:1.5.3.RELEASE'
+	compile 'org.testng:testng:6.11'
+}
+
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+    reportsDir = file("$buildDir//Reports//customJacocoReportDir")
+}    
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}//Reports//jacocoHtml"
+    }
+}
