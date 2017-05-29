@@ -31,6 +31,6 @@ public class SpringBootUtilsTest {
 	 */
 	@Test
 	public void calDistance() {
-		//AssertJUnit.assertEquals("", SpringBootUtils.calDistance(fromLat, fromLon, toLat, toLon));
+		//AssertJUnit.assertEquals("5.960686764301944", SpringBootUtils.calDistance(19.1585, 72.9989, 19.1087863, 73.0201256));
 	}
 }

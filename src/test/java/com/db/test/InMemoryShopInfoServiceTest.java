@@ -44,7 +44,10 @@ public class InMemoryShopInfoServiceTest {
 	public void getShopDetailsTC() throws IOException{
 		InMemoryShopInfoServiceImpl infoServiceImpl = new InMemoryShopInfoServiceImpl();
 		ShopInfo shopInfo = new ShopInfo();
-		
+		shopInfo.setShopName("Domino's");
+		shopInfo.setShopAddress("MBP Mahape");
+		shopInfo.setShopPostCode("400710");
+		infoServiceImpl.addShopDetails(shopInfo);
 		shopInfo = infoServiceImpl.getShopDetails("19.1585", "72.9989");
 		AssertJUnit.assertEquals("Domino's", shopInfo.getShopName());
 		AssertJUnit.assertEquals("MBP Mahape", shopInfo.getShopAddress());
