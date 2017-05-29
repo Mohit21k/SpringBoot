@@ -1,6 +1,6 @@
 package com.db.demo.model;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ShopInfo.
  */

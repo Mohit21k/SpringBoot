@@ -2,7 +2,7 @@ package com.db.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Geometry.
  */
