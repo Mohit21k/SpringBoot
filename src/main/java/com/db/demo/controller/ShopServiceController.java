@@ -15,7 +15,6 @@ import com.db.demo.model.Location;
 import com.db.demo.model.ShopInfo;
 import com.db.demo.services.ShopInfoService;
 
-
 /**
  * The Class ShopServiceController.
  */
@@ -41,10 +40,15 @@ public class ShopServiceController {
 	@RequestMapping(value = "/addshopinfo", method = RequestMethod.POST, consumes = { "application/json" }, produces = {
 			"application/json" })
 	@ResponseStatus(HttpStatus.OK)
-	public ShopInfo addShopDetails(@RequestBody ShopInfo shopInfo) throws IOException {
-		logger.info("[addShopDetails({})] started ...", shopInfo);
-		shopInfo = shopInfoService.addShopDetails(shopInfo);
-		logger.info("[addShopDetails({})] done.", (shopInfoService.getShopDetails()).toString());
+	public ShopInfo addShopDetails(@RequestBody ShopInfo shopInfo) {
+		try {
+			logger.info("[addShopDetails({})] started ...", shopInfo);
+			shopInfo = shopInfoService.addShopDetails(shopInfo);
+			logger.info("[addShopDetails({})] done.", (shopInfoService.getShopDetails()).toString());
+		} catch (Exception e) {
+			logger.error("Error Message =" + e.getMessage());
+			shopInfo = null;
+		}
 		return shopInfo;
 	}
 
@@ -60,10 +64,16 @@ public class ShopServiceController {
 	@RequestMapping(value = "/nearestShopInfo", method = RequestMethod.POST, consumes = {
 			"application/json" }, produces = { "application/json" })
 	@ResponseStatus(HttpStatus.OK)
-	public ShopInfo gethopDetails(@RequestBody Location location) throws IOException {
-		logger.info("[getShopDetails({})] started ...", location);
-		ShopInfo shopInfo = shopInfoService.getShopDetails(location.getLat(), location.getLng());
-		logger.info("[getShopDetails({})] done.", location);
+	public ShopInfo gethopDetails(@RequestBody Location location) {
+		ShopInfo shopInfo = new ShopInfo();
+		try {
+			logger.info("[getShopDetails({})] started ...", location);
+			shopInfo = shopInfoService.getShopDetails(location.getLat(), location.getLng());
+			logger.info("[getShopDetails({})] done.", location);
+		} catch (Exception e) {
+			logger.error("Error Message =" + e.getMessage());
+			shopInfo = null;
+		}
 		return shopInfo;
 	}
 }
